@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+:root{color-scheme:light;--ink:#202720;--muted:#5e695f;--paper:#f4f3ed;--green:#264b3c;--lime:#c9df72;--line:#d9ddd2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.65}
+a{color:var(--green);text-underline-offset:3px}
+a:hover{color:#152c23}
+.site-header,footer{max-width:1120px;margin:auto;padding:25px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.site-header{border-bottom:1px solid var(--line)}
+.brand{color:var(--ink);font-weight:700;text-decoration:none;font-size:1.15rem}
+.brand span{font-weight:400;color:var(--muted);font-size:.9rem;margin-left:8px}
+nav,footer{font-size:.88rem}nav{display:flex;gap:24px}nav a,footer a{color:var(--ink);text-decoration:none}
+main{max-width:1120px;margin:auto;padding:0 32px}
+.hero{padding:100px 0 105px;max-width:800px}
+.eyebrow,.number,.updated{font:500 .76rem ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--green)}
+h1{font-size:clamp(3.4rem,9vw,7.8rem);line-height:.99;letter-spacing:-.075em;margin:24px 0}
+h1 em{font-family:Georgia,serif;font-weight:600;letter-spacing:-.06em;color:var(--green)}
+.intro{font-size:1.25rem;color:var(--muted);max-width:510px;margin:28px 0 36px}
+.button{background:var(--green);color:white;text-decoration:none;padding:14px 19px;border-radius:3px;display:inline-flex;gap:16px}
+.button:hover{background:#152c23;color:white}
+.details{display:grid;grid-template-columns:repeat(3,1fr);gap:45px;padding:42px 0 90px;border-top:1px solid var(--line)}
+.number{color:#78816e}
+.details h2,.policy h2{font-size:1.15rem;letter-spacing:-.02em;margin:13px 0 8px}
+.details p{color:var(--muted);margin:0}
+footer{border-top:1px solid var(--line);color:var(--muted);justify-content:flex-start;flex-wrap:wrap}
+footer span{margin-right:auto}
+.policy{max-width:760px;padding-top:80px;padding-bottom:90px}
+.policy h1{font-size:clamp(3rem,8vw,5.5rem);margin:12px 0 5px}
+.policy h2{margin-top:38px}
+.policy p{color:#414b42}
+.policy .updated{margin:0 0 34px}
+.policy hr{border:0;border-top:1px solid var(--line);margin:55px 0}
+@media(max-width:700px){.site-header,footer{padding:20px}.site-header{align-items:flex-start}nav{gap:12px;flex-direction:column;text-align:right}main{padding:0 20px}.hero{padding:72px 0}.details{grid-template-columns:1fr;gap:28px;padding-bottom:60px}footer{gap:15px}footer span{width:100%}.brand span{display:block;margin:0}}

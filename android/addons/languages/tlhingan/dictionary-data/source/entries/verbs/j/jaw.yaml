@@ -1,0 +1,32 @@
+entry:
+  entry_name: jaw
+  slug: jaw_v
+  part_of_speech: v:t
+  pos: v
+  pos_subtype: t
+  status: canonical
+  section: main
+  definition: chat
+  see_also: '{jatlh:v}'
+  hidden_notes: The slang expression "jaw-jaw" means a lengthy discussion.
+  sources:
+    raw: '[1] {TKD:src}'
+    citations:
+    - source: tkd
+  translations:
+    de:
+      definition: sich unterhalten, plaudern, quatschen
+    fa:
+      definition: گپ زدن
+    sv:
+      definition: småprata, samtala
+    ru:
+      definition: болтать, вести непринужденную беседу, вести разговор
+    zh_HK:
+      definition: 聊
+    pt:
+      definition: bater papo
+    fi:
+      definition: jutella, rupatella
+    fr:
+      definition: bavarder

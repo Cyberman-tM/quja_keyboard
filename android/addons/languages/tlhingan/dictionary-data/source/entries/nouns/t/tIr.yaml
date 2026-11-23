@@ -1,0 +1,32 @@
+entry:
+  entry_name: tIr
+  slug: tIr_n
+  part_of_speech: n
+  pos: n
+  status: canonical
+  section: main
+  definition: grain
+  see_also: '{loSpev:n}, {wevpev:n}, {ngat:n:2}, {raS''IS:n}, {naH:n}, {tI:n}, {poch:v},
+    {yob:v}'
+  hidden_notes: '"Tear" shaped.'
+  sources:
+    raw: '[1] {TKD:src}'
+    citations:
+    - source: tkd
+  translations:
+    de:
+      definition: Getreide
+    fa:
+      definition: غلات
+    sv:
+      definition: gryn, korn, frö
+    ru:
+      definition: зерно
+    zh_HK:
+      definition: 糧食
+    pt:
+      definition: grão
+    fi:
+      definition: jyvä, vilja
+    fr:
+      definition: grain

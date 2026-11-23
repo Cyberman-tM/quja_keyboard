@@ -1,0 +1,32 @@
+entry:
+  entry_name: DIv
+  slug: DIv_v
+  part_of_speech: v:is
+  pos: v
+  pos_subtype: is
+  status: canonical
+  section: main
+  definition: be guilty
+  antonyms: '{chun:v}'
+  see_also: '{DIS:v}'
+  sources:
+    raw: '[1] {TKD:src}'
+    citations:
+    - source: tkd
+  translations:
+    de:
+      definition: schuldig sein
+    fa:
+      definition: مجرم بودن
+    sv:
+      definition: vara skyldig
+    ru:
+      definition: быть виновным
+    zh_HK:
+      definition: 是有罪的
+    pt:
+      definition: ser culpado
+    fi:
+      definition: olla syyllinen
+    fr:
+      definition: être coupable

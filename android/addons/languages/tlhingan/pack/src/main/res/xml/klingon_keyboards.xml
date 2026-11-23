@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Keyboards>
+    <Keyboard
+        nameResId="@string/klingon_keyboard"
+        iconResId="@drawable/ic_status_klingon"
+        layoutResId="@xml/quja"
+        id="d7f3f46b-4d9d-4cf8-a5ad-6926e3119a83"
+        defaultDictionaryLocale="tlh"
+        description="@string/klingon_keyboard_description"
+        defaultEnabled="true"
+        index="1" />
+</Keyboards>

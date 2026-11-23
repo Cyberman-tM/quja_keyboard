@@ -1,0 +1,47 @@
+entry:
+  entry_name: vaS
+  slug: vaS_v
+  part_of_speech: v:is
+  pos: v
+  pos_subtype: is
+  status: canonical
+  section: main
+  definition:
+    text: be wide, broad
+    parts:
+    - text: be wide
+    - text: broad
+  antonyms: '{lang:v}'
+  see_also: '{juch:v:1}, {ror:v}, {pI'':v}'
+  notes: 'This refers to side-to-side distance, and does not have the metaphorical
+    meanings such as "broad topic" or "wide range of opinions", nor is it used for
+    the sense of "to the full extent" such as "eyes wide open".[1]
+
+
+    This and {lang:v} can be used both for the outer measurement of a thing, and also
+    the inner measurement of an opening, for instance.[2]'
+  hidden_notes: '"Vast".'
+  sources:
+    raw: '[1] {qep''a'' 25 (2018):src}, [2] {Saarbrücken qepHom''a'' 2025:src}'
+    citations:
+    - source: qepa_2018
+      date: '2018'
+    - source: qephom_2025
+      date: '2025'
+  translations:
+    de:
+      definition: breit sein
+    fa:
+      definition: گسترده و وسیع بودن
+    sv:
+      definition: vara bred
+    ru:
+      definition: быть широким, широким
+    zh_HK:
+      definition: 是寬的、是廣闊的
+    pt:
+      definition: ser amplo
+    fi:
+      definition: olla leveä
+    fr:
+      definition: être large

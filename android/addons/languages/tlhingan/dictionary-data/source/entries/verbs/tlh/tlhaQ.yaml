@@ -1,0 +1,34 @@
+entry:
+  entry_name: tlhaQ
+  slug: tlhaQ_v
+  part_of_speech: v:is,klcp1
+  pos: v
+  pos_subtype: is
+  metadata_tags:
+  - klcp1
+  status: canonical
+  section: main
+  definition: be funny
+  see_also: '{Hagh:v}, {qID:v}'
+  sources:
+    raw: '[1] {TKD:src}'
+    citations:
+    - source: tkd
+  translations:
+    de:
+      definition: witzig sein, lustig sein
+    fa:
+      definition: خنده‌دار بودن
+    sv:
+      definition: vara rolig, vara skojig
+    ru:
+      definition: быть забавным
+    zh_HK:
+      definition: 是好笑的
+    pt:
+      definition: ser engraçado
+    fi:
+      definition: olla hauska, huvittava
+      search_tags: huvittaa
+    fr:
+      definition: être amusant, être drôle

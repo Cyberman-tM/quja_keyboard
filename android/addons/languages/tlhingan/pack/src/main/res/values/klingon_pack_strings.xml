@@ -1,0 +1,5 @@
+<resources>
+    <string name="klingon_keyboard_description">Lateinisches Klingonisch-Layout quja’.</string>
+    <string name="klingon_dictionary">Klingonisch</string>
+    <string name="klingon_dictionary_description">Wortvorschläge für quja’</string>
+</resources>

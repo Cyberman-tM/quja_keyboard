@@ -1,0 +1,8 @@
+Support for radical-based input methods. Traditional Chinese pack coming.
+Updated emoji support and layouts.
+Modularity and architecture improvements.
+Bug fixes & stability improvements.
+YABTU.
+Updated translations.
+
+More: https://github.com/AnySoftKeyboard/AnySoftKeyboard/milestone/96

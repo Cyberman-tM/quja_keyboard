@@ -1,0 +1,33 @@
+entry:
+  entry_name: toq
+  slug: toq_v
+  part_of_speech: v:is
+  pos: v
+  pos_subtype: is
+  status: canonical
+  section: main
+  definition: be inhabited
+  antonyms: '{chIm:v}'
+  see_also: '{Dab:v}'
+  sources:
+    raw: '[1] {TKD:src}'
+    citations:
+    - source: tkd
+  translations:
+    de:
+      definition: bewohnt sein
+    fa:
+      definition: ساکن بودن
+    sv:
+      definition: vara befolkad
+    ru:
+      definition: быть населенным
+    zh_HK:
+      definition: 是有人居住的
+    pt:
+      definition: ser habitado
+    fi:
+      definition: olla asuttu, asutettu
+      search_tags: asua, asuttaa
+    fr:
+      definition: être habité

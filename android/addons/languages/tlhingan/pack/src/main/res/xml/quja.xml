@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ask="http://schemas.android.com/apk/res-auto"
+    android:keyHeight="@integer/key_normal_height"
+    android:keyWidth="12%p"
+    android:horizontalGap="1px"
+    android:verticalGap="0px"
+    ask:autoCap="false">
+    <Row android:keyWidth="14%p">
+        <Key android:keyLabel="q" android:codes="113" android:keyEdgeFlags="left" />
+        <Key android:keyLabel="u" android:codes="117" />
+        <Key android:keyLabel="j" android:codes="106" />
+        <Key android:keyLabel="a" android:codes="97" />
+        <Key android:keyLabel="'" android:codes="39" />
+        <Key android:codes="@integer/key_code_delete" android:keyWidth="28%p"
+            android:isRepeatable="true" android:keyEdgeFlags="right" />
+    </Row>
+    <Row android:keyWidth="14%p">
+        <Key android:keyLabel="Q" android:codes="81" android:keyEdgeFlags="left" />
+        <Key android:keyLabel="m" android:codes="109" />
+        <Key android:keyLabel="I" android:codes="73" />
+        <Key android:keyLabel="tlh" android:keyOutputText="tlh" />
+        <Key android:keyLabel="o" android:codes="111" />
+        <Key android:keyLabel="e" android:codes="101" />
+        <Key android:keyLabel="H" android:codes="72" android:keyEdgeFlags="right" />
+    </Row>
+    <Row android:keyWidth="14%p">
+        <Key android:keyLabel="D" android:codes="68" android:keyEdgeFlags="left" />
+        <Key android:keyLabel="v" android:codes="118" />
+        <Key android:keyLabel="l" android:codes="108" />
+        <Key android:keyLabel="t" android:codes="116" />
+        <Key android:keyLabel="b" android:codes="98" />
+        <Key android:keyLabel="S" android:codes="83" />
+        <Key android:keyLabel="p" android:codes="112" android:keyEdgeFlags="right" />
+    </Row>
+    <Row android:keyWidth="14%p">
+        <Key android:keyLabel="ch" android:keyOutputText="ch" android:keyEdgeFlags="left" />
+        <Key android:keyLabel="y" android:codes="121" />
+        <Key android:keyLabel="w" android:codes="119" />
+        <Key android:keyLabel="gh" android:keyOutputText="gh" />
+        <Key android:keyLabel="r" android:codes="114" />
+        <Key android:keyLabel="n" android:codes="110" />
+        <Key android:keyLabel="ng" android:keyOutputText="ng" android:keyEdgeFlags="right" />
+    </Row>
+</Keyboard>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dictionaries>
+    <Dictionary
+        description="@string/klingon_dictionary_description"
+        dictionaryResourceId="@array/tlhingan_words_dict_array"
+        id="36e70ac4-c487-4cec-9bbc-33c455dc0306"
+        locale="tlh"
+        nameResId="@string/klingon_dictionary"
+        type="binary_resource" />
+</Dictionaries>

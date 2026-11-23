@@ -1,0 +1,147 @@
+package com.anysoftkeyboard.dictionaries;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
+import com.anysoftkeyboard.quicktextkeys.TagsExtractor;
+import java.util.Collections;
+import java.util.List;
+
+public interface Suggest {
+  void setCorrectionMode(
+      boolean enabledSuggestions, int maxLengthDiff, int maxDistance, boolean splitWords);
+
+  @VisibleForTesting
+  boolean isSuggestionsEnabled();
+
+  void closeDictionaries();
+
+  void setupSuggestionsForKeyboard(
+      @NonNull List<DictionaryAddOnAndBuilder> dictionaryBuilders,
+      @NonNull DictionaryBackgroundLoader.Listener cb);
+
+  /**
+   * Number of suggestions to generate from the input key sequence. This has to be a number between
+   * 1 and 100 (inclusive).
+   *
+   * @throws IllegalArgumentException if the number is out of range
+   */
+  void setMaxSuggestions(int maxSuggestions);
+
+  void resetNextWordSentence();
+
+  /**
+   * Returns a list of suggested next words for the given typed word
+   *
+   * @return list of suggestions.
+   */
+  List<CharSequence> getNextSuggestions(CharSequence previousWord, boolean inAllUpperCaseState);
+
+  /**
+   * Same as {@link #getNextSuggestions(CharSequence, boolean)}, with the radical code that was
+   * typed to commit {@code previousWord} (or null). Radical dictionaries use it to pick the right
+   * phrase rows when one output char can come from several source chars.
+   */
+  default List<CharSequence> getNextSuggestions(
+      CharSequence previousWord, boolean inAllUpperCaseState, @Nullable CharSequence radicalCode) {
+    return getNextSuggestions(previousWord, inAllUpperCaseState);
+  }
+
+  /**
+   * Returns a list of words that match the list of character codes passed in. This list will be
+   * overwritten the next time this function is called.
+   *
+   * @return list of suggestions.
+   */
+  List<CharSequence> getSuggestions(WordComposer wordComposer);
+
+  /**
+   * Returns a list of radical-based suggestions for the given radical sequence. These are
+   * candidates from radical dictionaries (e.g., Boshiamy, Cangjie, Zhuyin).
+   *
+   * @return list of radical suggestions, or empty list if no radical dictionaries are loaded.
+   */
+  default List<CharSequence> getRadicalSuggestions(WordComposer wordComposer) {
+    return Collections.emptyList();
+  }
+
+  /**
+   * Returns the exact radical-dictionary matches for the given radical sequence (no prefix
+   * expansion, no typed-radicals echo). Used for the candidate-selector feature.
+   */
+  @NonNull
+  default List<String> getRadicalExactMatches(@NonNull String radicals) {
+    return Collections.emptyList();
+  }
+
+  default boolean hasRadicalDictionaries() {
+    return false;
+  }
+
+  default boolean anyActiveDictionarySupportsGestureTyping() {
+    return true;
+  }
+
+  /** Returns homophones for a character (same Zhuyin pronunciation). */
+  @NonNull
+  default List<CharSequence> getHomophones(@NonNull String character) {
+    return Collections.emptyList();
+  }
+
+  /** Returns the radical input code for a character (e.g., 踩->ozet). */
+  @Nullable
+  default String getRadicalCode(@NonNull String character) {
+    return null;
+  }
+
+  /** Returns true if homophone lookup data is available. */
+  default boolean hasHomophoneData() {
+    return false;
+  }
+
+  /**
+   * Returns the index of the valid word from the last call to getSuggestions. In most cases, if the
+   * typed word is valid then the index is 0, if not and there is a close correction, then it will
+   * probably be 1. If nothing can be suggested the returned index will be -1;
+   */
+  int getLastValidSuggestionIndex();
+
+  boolean isValidWord(CharSequence word);
+
+  boolean addWordToUserDictionary(String word);
+
+  void removeWordFromUserDictionary(String word);
+
+  default void ignoreWord(String word) {}
+
+  default void unignoreWord(String word) {}
+
+  default boolean isWordIgnored(CharSequence word) {
+    return false;
+  }
+
+  void setTagsSearcher(@NonNull TagsExtractor extractor);
+
+  boolean tryToLearnNewWord(CharSequence newWord, AdditionType additionType);
+
+  void setIncognitoMode(boolean incognitoMode);
+
+  boolean isIncognitoMode();
+
+  void destroy();
+
+  public enum AdditionType {
+    Picked(3),
+    Typed(2);
+
+    private final int mFrequencyDelta;
+
+    AdditionType(int frequencyDelta) {
+      mFrequencyDelta = frequencyDelta;
+    }
+
+    public int getFrequencyDelta() {
+      return mFrequencyDelta;
+    }
+  }
+}

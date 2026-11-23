@@ -1,0 +1,312 @@
+/*
+ * Copyright (c) 2013 Menny Even-Danan
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.anysoftkeyboard.dictionaries;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import androidx.annotation.NonNull;
+import androidx.collection.ArrayMap;
+import com.anysoftkeyboard.addons.AddOn;
+import com.anysoftkeyboard.addons.AddOnsFactory;
+import com.anysoftkeyboard.base.utils.Logger;
+import com.anysoftkeyboard.keyboards.AnyKeyboard;
+import com.anysoftkeyboard.keyboards.KeyboardFactory;
+import com.anysoftkeyboard.prefs.DirectBootAwareSharedPreferences;
+import com.menny.android.anysoftkeyboard.AnyApplication;
+import com.menny.android.anysoftkeyboard.BuildConfig;
+import io.reactivex.Observable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+public class ExternalDictionaryFactory extends AddOnsFactory<DictionaryAddOnAndBuilder> {
+
+  private static final String PREFS_KEY_POSTFIX_OVERRIDE_DICTIONARY = "_override_dictionary";
+  private static final String TAG = "ASKExtDictFactory";
+  private static final String XML_LANGUAGE_ATTRIBUTE = "locale";
+  private static final String XML_ASSETS_ATTRIBUTE = "dictionaryAssertName";
+  private static final String XML_RESOURCE_ATTRIBUTE = "dictionaryResourceId";
+  private static final String XML_AUTO_TEXT_RESOURCE_ATTRIBUTE = "autoTextResourceId";
+  private static final String XML_RADICAL_DICT_RESOURCE_ATTRIBUTE = "radicalDictionaryResId";
+  private static final String XML_RADICAL_PHRASES_RESOURCE_ATTRIBUTE = "radicalPhrasesResId";
+  private static final String XML_HOMOPHONES_RESOURCE_ATTRIBUTE = "homophonesResId";
+  private static final String XML_CHAR_TO_PHONETIC_RESOURCE_ATTRIBUTE = "charToPhoneticResId";
+  private static final String XML_CHAR_TO_RADICAL_RESOURCE_ATTRIBUTE = "charToRadicalResId";
+  private static final String XML_EXCLUDE_HOMOPHONE_CHARS_RESOURCE_ATTRIBUTE =
+      "excludeHomophoneCharsResId";
+  private static final String XML_INCLUDE_CHARS_RESOURCE_ATTRIBUTE = "includeCharsResId";
+  private static final String XML_CHAR_FREQUENCY_RESOURCE_ATTRIBUTE = "charFrequencyResId";
+  private static final String XML_CANDIDATE_CONVERSION_RESOURCE_ATTRIBUTE =
+      "candidateConversionResId";
+  private static final String XML_SPLIT_MULTI_CODEPOINT_CANDIDATES_ATTRIBUTE =
+      "splitMultiCodepointCandidates";
+  private static final String XML_INITIAL_SUGGESTIONS_ARRAY_RESOURCE_ATTRIBUTE =
+      "initialSuggestions";
+  private static final String XML_SUPPORTS_GESTURE_TYPING_ATTRIBUTE = "supportsGestureTyping";
+
+  private final Map<String, DictionaryAddOnAndBuilder> mBuildersByLocale = new ArrayMap<>();
+  private final RadicalOverlayCache mRadicalOverlayCache = new RadicalOverlayCache();
+
+  public ExternalDictionaryFactory(Context context) {
+    super(
+        context,
+        DirectBootAwareSharedPreferences.create(context),
+        TAG,
+        "com.menny.android.anysoftkeyboard.DICTIONARY",
+        "com.menny.android.anysoftkeyboard.dictionaries",
+        "Dictionaries",
+        "Dictionary",
+        "dictionary_",
+        com.anysoftkeyboard.language.english.pack.R.xml.english_dictionaries,
+        0,
+        true,
+        BuildConfig.TESTING_BUILD);
+  }
+
+  public static String getDictionaryOverrideKey(AnyKeyboard currentKeyboard) {
+    return String.format(
+        Locale.US,
+        "%s%s%s",
+        KeyboardFactory.PREF_ID_PREFIX,
+        currentKeyboard.getKeyboardId(),
+        PREFS_KEY_POSTFIX_OVERRIDE_DICTIONARY);
+  }
+
+  public static boolean isOverrideDictionaryPrefKey(String key) {
+    return !TextUtils.isEmpty(key)
+        && key.startsWith(KeyboardFactory.PREF_ID_PREFIX)
+        && key.endsWith(PREFS_KEY_POSTFIX_OVERRIDE_DICTIONARY);
+  }
+
+  @Override
+  protected synchronized void clearAddOnList() {
+    super.clearAddOnList();
+    mBuildersByLocale.clear();
+  }
+
+  @Override
+  protected void loadAddOns() {
+    super.loadAddOns();
+
+    for (DictionaryAddOnAndBuilder addOn : getAllAddOns())
+      mBuildersByLocale.put(addOn.getLanguage(), addOn);
+  }
+
+  public synchronized DictionaryAddOnAndBuilder getDictionaryBuilderByLocale(String locale) {
+    if (mBuildersByLocale.size() == 0) loadAddOns();
+
+    return mBuildersByLocale.get(locale);
+  }
+
+  @Override
+  protected boolean isAddOnEnabledByDefault(@NonNull String addOnId) {
+    return true;
+  }
+
+  @Override
+  public boolean isAddOnEnabled(String addOnId) {
+    return true;
+  }
+
+  @Override
+  public void setAddOnEnabled(String addOnId, boolean enabled) {
+    throw new UnsupportedOperationException("This is not supported for dictionaries.");
+  }
+
+  /**
+   * Returns the per-process cache that holds materialised user-supplied radical-overlay byte
+   * snapshots. Settings UI code calls {@link RadicalOverlayCache#invalidateAll()} when the user
+   * picks a new overlay folder or taps "refresh imported tables".
+   */
+  @NonNull
+  public RadicalOverlayCache getRadicalOverlayCache() {
+    return mRadicalOverlayCache;
+  }
+
+  @Override
+  protected DictionaryAddOnAndBuilder createConcreteAddOn(
+      Context askContext,
+      Context context,
+      int apiVersion,
+      CharSequence prefId,
+      CharSequence name,
+      CharSequence description,
+      boolean isHidden,
+      int sortIndex,
+      AttributeSet attrs) {
+    final String language = attrs.getAttributeValue(null, XML_LANGUAGE_ATTRIBUTE);
+    final String assets = attrs.getAttributeValue(null, XML_ASSETS_ATTRIBUTE);
+    final int dictionaryResourceId =
+        attrs.getAttributeResourceValue(null, XML_RESOURCE_ATTRIBUTE, AddOn.INVALID_RES_ID);
+    final int autoTextResId =
+        attrs.getAttributeResourceValue(
+            null, XML_AUTO_TEXT_RESOURCE_ATTRIBUTE, AddOn.INVALID_RES_ID);
+    final int radicalDictResId =
+        attrs.getAttributeResourceValue(
+            null, XML_RADICAL_DICT_RESOURCE_ATTRIBUTE, AddOn.INVALID_RES_ID);
+    final int radicalPhrasesResId =
+        attrs.getAttributeResourceValue(
+            null, XML_RADICAL_PHRASES_RESOURCE_ATTRIBUTE, AddOn.INVALID_RES_ID);
+    final int homophonesResId =
+        attrs.getAttributeResourceValue(
+            null, XML_HOMOPHONES_RESOURCE_ATTRIBUTE, AddOn.INVALID_RES_ID);
+    final int charToPhoneticResId =
+        attrs.getAttributeResourceValue(
+            null, XML_CHAR_TO_PHONETIC_RESOURCE_ATTRIBUTE, AddOn.INVALID_RES_ID);
+    final int charToRadicalResId =
+        attrs.getAttributeResourceValue(
+            null, XML_CHAR_TO_RADICAL_RESOURCE_ATTRIBUTE, AddOn.INVALID_RES_ID);
+    final int excludeHomophoneCharsResId =
+        attrs.getAttributeResourceValue(
+            null, XML_EXCLUDE_HOMOPHONE_CHARS_RESOURCE_ATTRIBUTE, AddOn.INVALID_RES_ID);
+    final int includeCharsResId =
+        attrs.getAttributeResourceValue(
+            null, XML_INCLUDE_CHARS_RESOURCE_ATTRIBUTE, AddOn.INVALID_RES_ID);
+    final int charFrequencyResId =
+        attrs.getAttributeResourceValue(
+            null, XML_CHAR_FREQUENCY_RESOURCE_ATTRIBUTE, AddOn.INVALID_RES_ID);
+    final int candidateConversionResId =
+        attrs.getAttributeResourceValue(
+            null, XML_CANDIDATE_CONVERSION_RESOURCE_ATTRIBUTE, AddOn.INVALID_RES_ID);
+    final boolean splitMultiCodepointCandidates =
+        attrs.getAttributeBooleanValue(null, XML_SPLIT_MULTI_CODEPOINT_CANDIDATES_ATTRIBUTE, false);
+    final int initialSuggestionsId =
+        attrs.getAttributeResourceValue(
+            null, XML_INITIAL_SUGGESTIONS_ARRAY_RESOURCE_ATTRIBUTE, AddOn.INVALID_RES_ID);
+    // asserting
+    if ((language == null)
+        || ((assets == null)
+            && (dictionaryResourceId == AddOn.INVALID_RES_ID)
+            && (radicalDictResId == AddOn.INVALID_RES_ID))) {
+      Logger.e(
+          TAG,
+          "External dictionary is missing both a binary dictionary and a radical dictionary"
+              + " (language=%s, dictionaryResourceId=%s, radicalDictResId=%s, hasAssets=%s)."
+              + " Will not create dictionary.",
+          language,
+          dictionaryResourceId,
+          radicalDictResId,
+          assets != null);
+      return null;
+    } else {
+      final RadicalDictionaryConfig radicalConfig =
+          new RadicalDictionaryConfig.Builder()
+              .radicalDictResId(radicalDictResId)
+              .radicalPhrasesResId(radicalPhrasesResId)
+              .homophonesResId(homophonesResId)
+              .charToPhoneticResId(charToPhoneticResId)
+              .charToRadicalResId(charToRadicalResId)
+              .excludeHomophoneCharsResId(excludeHomophoneCharsResId)
+              .includeCharsResId(includeCharsResId)
+              .charFrequencyResId(charFrequencyResId)
+              .candidateConversionResId(candidateConversionResId)
+              .splitMultiCodepointCandidates(splitMultiCodepointCandidates)
+              .build();
+
+      final boolean supportsGestureTyping =
+          attrs.getAttributeBooleanValue(
+              null, XML_SUPPORTS_GESTURE_TYPING_ATTRIBUTE, !radicalConfig.hasRadicalDictionary());
+
+      if (dictionaryResourceId == AddOn.INVALID_RES_ID) {
+        return new DictionaryAddOnAndBuilder(
+            askContext,
+            context,
+            apiVersion,
+            prefId,
+            name,
+            description,
+            isHidden,
+            sortIndex,
+            language,
+            assets,
+            autoTextResId,
+            initialSuggestionsId,
+            supportsGestureTyping,
+            radicalConfig);
+      } else {
+        return new DictionaryAddOnAndBuilder(
+            askContext,
+            context,
+            apiVersion,
+            prefId,
+            name,
+            description,
+            isHidden,
+            sortIndex,
+            language,
+            dictionaryResourceId,
+            autoTextResId,
+            initialSuggestionsId,
+            supportsGestureTyping,
+            radicalConfig);
+      }
+    }
+  }
+
+  @NonNull
+  public List<DictionaryAddOnAndBuilder> getBuildersForKeyboard(AnyKeyboard keyboard) {
+    List<DictionaryAddOnAndBuilder> builders = new ArrayList<>();
+    final String dictionaryValue =
+        mSharedPreferences.getString(getDictionaryOverrideKey(keyboard), null);
+
+    if (TextUtils.isEmpty(dictionaryValue)) {
+      final DictionaryAddOnAndBuilder builderByLocale =
+          AnyApplication.getExternalDictionaryFactory(mContext)
+              .getDictionaryBuilderByLocale(keyboard.getDefaultDictionaryLocale());
+      if (builderByLocale != null) builders.add(builderByLocale);
+    } else {
+      String[] ids = dictionaryValue.split(":", -1);
+      for (String id : ids) {
+        final DictionaryAddOnAndBuilder addOnById =
+            AnyApplication.getExternalDictionaryFactory(mContext).getAddOnById(id);
+        if (addOnById != null) builders.add(addOnById);
+      }
+    }
+
+    return builders;
+  }
+
+  public void setBuildersForKeyboard(
+      AnyKeyboard keyboard, List<DictionaryAddOnAndBuilder> buildersForKeyboard) {
+    final String mappingSettingsKey = getDictionaryOverrideKey(keyboard);
+    SharedPreferences.Editor editor = mSharedPreferences.edit();
+    if (buildersForKeyboard.size() == 0) {
+      editor.remove(mappingSettingsKey);
+    } else {
+      StringBuilder stringBuilder = new StringBuilder(buildersForKeyboard.size() * 24);
+      for (DictionaryAddOnAndBuilder builder : buildersForKeyboard) {
+        if (stringBuilder.length() > 0) stringBuilder.append(':');
+        stringBuilder.append(builder.getId());
+      }
+      editor.putString(mappingSettingsKey, stringBuilder.toString());
+    }
+    editor.apply();
+  }
+
+  @NonNull
+  public static Iterable<String> getLocalesFromDictionaryAddOns(@NonNull Context context) {
+    return Observable.fromIterable(
+            AnyApplication.getExternalDictionaryFactory(context).getAllAddOns())
+        .filter(addOn -> !TextUtils.isEmpty(addOn.getLanguage()))
+        .map(DictionaryAddOnAndBuilder::getLanguage)
+        .distinct() // will not return any previously seen value
+        .blockingIterable();
+  }
+}

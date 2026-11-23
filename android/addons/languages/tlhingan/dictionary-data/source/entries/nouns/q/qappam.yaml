@@ -1,0 +1,38 @@
+entry:
+  entry_name: qappam
+  slug: qappam_n
+  part_of_speech: n
+  pos: n
+  status: canonical
+  section: main
+  definition: foundation (structure)
+  see_also: '{qach:n}, {Qutlh:v}, {romton:n}'
+  notes: This refers to the supporting understructure of a building.
+  hidden_notes: 'This was defined as "foundation". The word "structure" was added
+    to distinguish this from {ghanroq:n}.
+
+    Reverse of "map" + {paq:n:1h} "book", i.e., "atlas". In mythology, Atlas holds
+    up the sky. In architectural sculpture, an atlas is a support structure for a
+    building sculpted in the form of a man.'
+  sources:
+    raw: '[1] {qep''a'' 25 (2018):src}'
+    citations:
+    - source: qepa_2018
+      date: '2018'
+  translations:
+    de:
+      definition: Fundament
+    fa:
+      definition: بنیاد (ساختار)
+    sv:
+      definition: stiftelse (struktur)
+    ru:
+      definition: фундамент (структура)
+    zh_HK:
+      definition: 基礎（結構）
+    pt:
+      definition: fundação (estrutura)
+    fi:
+      definition: perustus
+    fr:
+      definition: fondation (structure)

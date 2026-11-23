@@ -1,0 +1,81 @@
+﻿Word,Corrected_Form,WeightedPer1000,BoQwI_Match,BoQwI_Candidate_Matches,BoQwI_Categories,Decision,SourceFile
+'AY','ay',"0,0437",yes,'ay',nouns/',Corrected to 'ay'; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+'DI,'DI,"0,1528",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+'H,'H,"0,3275",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+'IH,'IH,"0,3679",yes,'IH,verbs/',Corrected to 'IH; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+'IQ,'IQ,"0,0977",yes,'IQ,verbs/',Corrected to 'IQ; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+A,a,"0,0207",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+AA,aa,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+AMLET,amlet,"0,0437",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+ATLH,atlh,"0,0218",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+AU,au,"0,0311",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+AY,ay,"0,3275",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+BE,be,"0,1092",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+BURNHAM,burnHam,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+CC,cc,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+CHA,cha,"0,0873",yes,cha,nouns/ch,Corrected to cha; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+CHARON,charon,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+D,D,"0,1632",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+DI,DI,"0,1255",yes,DI,nouns/d,Corrected to DI; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+DIS,DIS,"0,3051",yes,DIS,nouns/d | verbs/d,Corrected to DIS; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+DISCOVERY,DIScovery,"0,0207",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+E,e,"0,0218",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+EM,em,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+EMOTION,emotIon,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+EN,en,"0,0218",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+GEORGIOU,georgIou,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+GH,gh,"0,0218",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+GHERTLHU,ghertlhu,"0,131",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+H,H,"0,0873",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+Ha'DIbah,Ha'DIbaH,"0,3344",yes,,nouns/h,Corrected to Ha'DIbaH; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+hey,Hey,"0,0218",yes,,verbs/h,Corrected to Hey; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+HI',HI',"0,0655",yes,HI',nouns/h,Corrected to HI'; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+I,I,"0,0218",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+ISS,ISS,"0,1244",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+JAV,jav,"0,0218",yes,jav,nouns/j,Corrected to jav; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+L,l,"0,1774",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+LAYERTE,layerte,"0,0873",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+LO,lo,"0,0655",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+LOGIC,logIc,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+LUT,lut,"0,3712",yes,lut,nouns/l,Corrected to lut; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+MED,meD,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+MICHAEL,mIchael,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+MIH,mIH,"0,0218",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+MIQ,mIQ,"0,0655",yes,mIQ,nouns/m | verbs/m,Corrected to mIQ; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+NCC,ncc,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+NIM,nIm,"0,0437",yes,nIm,nouns/n,Corrected to nIm; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+NIS,nIS,"0,1528",yes,nIS,verbs/n,Corrected to nIS; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+NX,nx,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+OCH,och,"0,0218",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+OM,om,"0,3712",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+OVELYA,ovelya,"0,0655",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+P,p,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+PAUL,paul,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+PHILIPPA,pHIlIppa,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+POLONYU,polonyu,"0,0655",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+Q,Q,"0,0218",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+QI,QI,"0,0415",yes,QI,nouns/q,Corrected to QI; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+QIH,QIH,"0,2254",yes,QIH,nouns/q | verbs/q,Corrected to QIH; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+RO,ro,"0,0218",yes,ro,nouns/r,Corrected to ro; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+S,S,"0,6845",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+SHENZHOU,SHenzHou,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+SID,SID,"0,0104",yes,SID,nouns/s,Corrected to SID; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+SIQ,SIQ,"0,1621",yes,SIQ,verbs/s,Corrected to SIQ; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+SIQDI',SIQDI',"0,0218",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+SISDI',SISDI',"0,0437",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+STAMETS,StametS,"0,0207",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+SYLVIA,SylvIa,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+TA,ta,"0,262",yes,ta,nouns/t,Corrected to ta; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+TA'BE',ta'be',"0,0218",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+TEN,ten,"0,0218",yes,ten,verbs/t,Corrected to ten; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+TILLY,tIlly,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+TLHAW,tlhaw,"0,1528",yes,tlhaw,verbs/tlh,Corrected to tlhaw; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+TYLER,tyler,"0,0207",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+U,u,"0,1348",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+UNF,unf,"0,3344",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+UNGH,ungh,"0,3344",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+VAGH,vagh,"0,0437",yes,vagh,nouns/v,Corrected to vagh; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+WA,wa,"0,0655",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+WALKER,walker,"0,0104",no,,,No exact boQwI' headword; excluded,raw-weighted-word-frequencies-no-names.csv
+WEJ,wej,"0,0655",yes,wej,adverbials/w | nouns/w,Corrected to wej; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv
+YU,yu,"0,1528",yes,yu,nouns/y,Corrected to yu; exact boQwI' entry confirms form,raw-weighted-word-frequencies-no-names.csv

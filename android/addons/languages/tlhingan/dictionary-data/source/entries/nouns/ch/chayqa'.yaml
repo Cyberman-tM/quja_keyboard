@@ -1,0 +1,35 @@
+entry:
+  entry_name: chayqa'
+  slug: chayqa'_n
+  part_of_speech: n:body
+  pos: n
+  pos_subtype: body
+  status: canonical
+  section: main
+  definition: esophagus
+  see_also: '{mong:n}, {Hugh:n}, {ghup:v}'
+  hidden_notes: The word "chayka" means "seagull" in Russian and other Slavic languages
+    (perhaps best known from the title of Chekhov's play). The esophagus is the "gullet".
+  search_tags: gullet
+  sources:
+    raw: '[1] {qep''a'' 27 (2020):src}'
+    citations:
+    - source: qepa_2020
+      date: '2020'
+  translations:
+    de:
+      definition: Speiseröhre
+    fa:
+      definition: مری
+    sv:
+      definition: matstrupe
+    ru:
+      definition: пищевод
+    zh_HK:
+      definition: 食管
+    pt:
+      definition: esôfago
+    fi:
+      definition: ruokatorvi
+    fr:
+      definition: œsophage

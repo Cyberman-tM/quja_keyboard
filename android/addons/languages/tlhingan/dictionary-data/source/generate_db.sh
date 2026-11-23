@@ -1,0 +1,363 @@
+#!/bin/bash
+
+# Get the directory with the original data.
+cd "$(dirname "$0")"
+SOURCE_DIR=$PWD
+
+# Sanity check that the export to Anki script isn't broken.
+# TODO: Check not only that the script succeeds, but that the output is as
+# expected.
+./export_to_anki.py --test > /dev/null
+if [[ ! $? = 0 ]]; then
+    echo "Anki export is broken."
+    exit 1
+fi
+
+# Check for non-interactive mode flag.
+if [[ "$1" = "--noninteractive" ]]
+then
+    NONINTERACTIVE=true
+    shift
+fi
+
+# Check for xml-only mode flag (exclusive with "--noninteractive").
+if [[ "$1" = "--xmlonly" ]]
+then
+    XMLONLY=true
+    shift
+fi
+
+# Check whether qawHaq.db exists and is at least as new as the source files.
+ALREADY_UP_TO_DATE=true
+if [[ ! -f $SOURCE_DIR/qawHaq.db ]]; then
+    ALREADY_UP_TO_DATE=
+else
+    for f in $SOURCE_DIR/mem-*.xml
+    do
+        [[ "$f" -nt $SOURCE_DIR/qawHaq.db ]] && ALREADY_UP_TO_DATE=
+    done
+    [[ $SOURCE_DIR/VERSION -nt $SOURCE_DIR/qawHaq.db ]] && ALREADY_UP_TO_DATE=
+fi
+if [[ $ALREADY_UP_TO_DATE ]] && [[ ! $XMLONLY ]]
+then
+    echo "qawHaq.db is up-to-date."
+    exit
+fi
+if [[ ! $XMLONLY ]]
+then
+    echo "Generating qawHaq.db."
+else
+    echo "Generating mem.xml."
+fi
+
+# Check for MacOS and use GNU-sed if detected.
+if [[ "$(uname -s)" = "Darwin" ]]
+then
+    SED=gsed
+else
+    SED=sed
+fi
+
+# Copy files into temporary directory, renumber, and concatenate data into one
+# xml file.
+TMP_DIR=$(mktemp -d "${TMPDIR:-/tmp}/klingon-assistant-data.XXXXXXXX")
+cp $SOURCE_DIR/mem-*.xml $TMP_DIR
+cp $SOURCE_DIR/clear_autotranslated_notes.sh $TMP_DIR
+cp $SOURCE_DIR/renumber.py $TMP_DIR
+cd $TMP_DIR
+./clear_autotranslated_notes.sh
+./renumber.py
+cat mem-00-header.xml mem-01-b.xml mem-02-ch.xml mem-03-D.xml mem-04-gh.xml mem-05-H.xml mem-06-j.xml mem-07-l.xml mem-08-m.xml mem-09-n.xml mem-10-ng.xml mem-11-p.xml mem-12-q.xml mem-13-Q.xml mem-14-r.xml mem-15-S.xml mem-16-t.xml mem-17-tlh.xml mem-18-v.xml mem-19-w.xml mem-20-y.xml mem-21-a.xml mem-22-e.xml mem-23-I.xml mem-24-o.xml mem-25-u.xml mem-26-suffixes.xml mem-27-extra.xml mem-28-examples.xml mem-29-footer.xml > $TMP_DIR/mem.xml
+cp $TMP_DIR/EXTRA $SOURCE_DIR
+cd $SOURCE_DIR
+
+# Write the ID of the first entry in the "extra" section to the KlingonContentDatabase.java file.
+JAVA_FILE="$SOURCE_DIR/../app/src/main/java/org/tlhInganHol/android/klingonassistant/KlingonContentDatabase.java"
+if [[ ! -f $JAVA_FILE ]]; then
+    echo "Info: KlingonContentDatabase.java not updated."
+else
+    ${SED} -i -e "s/\(private static final int ID_OF_FIRST_EXTRA_ENTRY = \).*;/\1$(cat EXTRA);/" $JAVA_FILE
+fi
+
+# We only want the xml file for debugging purposes, so stop.
+if [[ $XMLONLY ]]
+then
+    cp $TMP_DIR/mem.xml $SOURCE_DIR
+    exit
+fi
+
+# Ensure entries are numbered first.
+MISSING_IDS=$(grep "_id\"><" $TMP_DIR/mem.xml)
+if [[ ! -z "$MISSING_IDS" ]]
+then
+    echo "Missing IDs: run renumber.py."
+    echo
+    exit 1
+fi
+
+# Write database version number.
+VERSION=$(cat VERSION)
+echo Writing database version $VERSION...
+${SED} -i -e "s/\[\[VERSION\]\]/$VERSION/" $TMP_DIR/mem.xml
+
+# Convert from xml to sql instructions.
+./xml2sql.pl $TMP_DIR > $TMP_DIR/mem.sql
+${SED} -i -e 's/INSERT INTO "mem"/INSERT INTO mem/g' $TMP_DIR/mem.sql
+
+# Track if any warnings are displayed.
+HAS_WARNINGS=
+
+# Print any entries with duplicate columns.
+DUPLICATE_COLUMNS=$(grep "ARRAY" $TMP_DIR/mem.sql)
+if [[ ! -z "$DUPLICATE_COLUMNS" ]]
+then
+    echo "Entries with duplicate columns:"
+    echo "$DUPLICATE_COLUMNS"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any parts of speech accidentally entered into the definition.
+POS_DEFINITION_MIXUP=$(grep -B2 "definition\">\(v\|n\|adv\|conj\|ques\|sen\|excl\)[:<]" $TMP_DIR/mem.xml)
+if [[ ! -z "$POS_DEFINITION_MIXUP" ]]
+then
+    echo "Part of speech information entered into definition:"
+    echo "$POS_DEFINITION_MIXUP"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any empty German definitions.
+MISSING_DE=$(grep -B3 "definition_de\"><" $TMP_DIR/mem.xml | grep "entry_name")
+if [[ ! -z "$MISSING_DE" ]]
+then
+    echo "Missing German definitions:"
+    echo "$MISSING_DE"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any empty Portuguese definitions.
+MISSING_PT=$(grep -B8 "definition_pt\"><" $TMP_DIR/mem.xml | grep "entry_name")
+if [[ ! -z "$MISSING_PT" ]]
+then
+    echo "Missing Portuguese definitions:"
+    echo "$MISSING_PT"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any empty Finnish definitions.
+MISSING_FI=$(grep -B8 "definition_fi\"><" $TMP_DIR/mem.xml | grep "entry_name")
+if [[ ! -z "$MISSING_FI" ]]
+then
+    echo "Missing Finnish definitions:"
+    echo "$MISSING_FI"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any untranslated entries.
+MISSED_TRANSLATE=$(grep ">\(AUTO\)\?TRANSLATE" $TMP_DIR/mem.xml)
+if [[ ! -z "$MISSED_TRANSLATE" ]]
+then
+    echo "Missing translations:"
+    echo "$MISSED_TRANSLATE"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any mistyped colons.
+COLON_TYPO=$(grep ";[nv]" $TMP_DIR/mem.xml)
+if [[ ! -z "$COLON_TYPO" ]]
+then
+    echo "Mistyped colon:"
+    echo "$COLON_TYPO"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any field beginning in a space, or ending in a space or comma (which is on one line).
+MISPLACED_SPACE_OR_COMMA=$(grep -n "> \|>.*  \|[^ >]\+  .*<\|>.*[ ,]<" $TMP_DIR/mem.xml)
+if [[ ! -z "$MISPLACED_SPACE_OR_COMMA" ]]
+then
+    echo "Misplaced space or comma:"
+    echo "$MISPLACED_SPACE_OR_COMMA"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Catch some multi-line cases missed by the above.
+MISPLACED_SPACE=$(grep -n "> \| <\/column>" $TMP_DIR/mem.xml)
+if [[ ! -z "$MISPLACED_SPACE" ]]
+then
+    echo "Misplaced space:"
+    echo "$MISPLACED_SPACE"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any lines with trailing whitespace.
+EOL_WHITESPACE=$(grep -n "[[:space:]]$" $TMP_DIR/mem.xml)
+if [[ ! -z "$EOL_WHITESPACE" ]]
+then
+    echo "End-of-line whitespace:"
+    echo "$EOL_WHITESPACE"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any junk that accidentally added to the XML file at the beginning of a line.
+BOL_JUNK=$(grep "^\s*[^ ]\+\s*<\(table\|column\)" $TMP_DIR/mem.xml)
+if [[ ! -z "$BOL_JUNK" ]]
+then
+    echo "Junk at beginning of line:"
+    echo "$BOL_JUNK"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any full-line examples which were accidentally indented.
+BADLY_INDENTED_EXAMPLES=$(grep "^\s\+▶" $TMP_DIR/mem.xml)
+if [[ ! -z "$BADLY_INDENTED_EXAMPLES" ]]
+then
+    echo "Full-line examples which are badly indented:"
+    echo "$BADLY_INDENTED_EXAMPLES"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print badly indented lines.
+BADLY_INDENTED_TABLES=$(grep -A2 "^\(\s\{0,3\}\|\s\{5,7\}\|\s\{9,12\}\)<table" $TMP_DIR/mem.xml)
+if [[ ! -z "$BADLY_INDENTED_TABLES" ]]
+then
+    echo "Badly indented lines:"
+    echo "$BADLY_INDENTED_TABLES"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print more badly indented lines.
+BADLY_INDENTED_COLUMNS=$(grep -A2 "^\(\s\{0,5\}\|\s\{7,9\}\|\s\{11,13\}\)<column" $TMP_DIR/mem.xml)
+if [[ ! -z "$BADLY_INDENTED_COLUMNS" ]]
+then
+    echo "Badly indented lines:"
+    echo "$BADLY_INDENTED_COLUMNS"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any broken references.
+BROKEN_REFERENCES=$(./xml2json.py 2> >(sort|uniq) > /dev/null)
+if [[ ! -z "$BROKEN_REFERENCES" ]]
+then
+    echo "Broken references:"
+    echo "$BROKEN_REFERENCES"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any sources which are not empty but don't begin with "[".
+MISSED_SOURCE_BRACKET=$(grep "source\">[^\[<]" $TMP_DIR/mem.xml)
+if [[ ! -z "$MISSED_SOURCE_BRACKET" ]]
+then
+    echo "Missing source index:"
+    echo "$MISSED_SOURCE_BRACKET"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any sources missing its type.
+MISSED_SOURCE_TYPE=$(grep "source\">.*{[^:]*}" $TMP_DIR/mem.xml)
+if [[ ! -z "$MISSED_SOURCE_TYPE" ]]
+then
+    echo "Missing source type:"
+    echo "$MISSED_SOURCE_TYPE"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any new entries containing {ngh} or {ngH}. The "xifan hol" expansion
+# logic in the Android app needs to be updated if any such entries are added.
+NGH_DIFF=$(grep "entry_name\">.*ng[hH]" $TMP_DIR/mem.xml | diff - expected_ngh.txt)
+if [[ ! -z "$NGH_DIFF" ]]
+then
+    echo "Changed entries with {ngh} or {ngH}:"
+    echo "$NGH_DIFF"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Print any new 2-letter verbs. The parsing logic in the Android app needs to
+# be updated if any such verbs are added.
+TWO_LETTER_VERBS_DIFF=$(grep -B1 "part_of_speech\">v" $TMP_DIR/mem.xml | grep "entry_name\">..<" | diff - expected_two_letter_verbs.txt)
+if [[ ! -z "$TWO_LETTER_VERBS_DIFF" ]]
+then
+    echo "Changed two-letter verbs:"
+    echo "$TWO_LETTER_VERBS_DIFF"
+    echo
+    HAS_WARNINGS=true
+fi
+
+# Exit with error if any warnings were displayed.
+if [[ $HAS_WARNINGS ]]
+then
+    echo "Warnings were found. Please fix the issues above."
+    exit 1
+fi
+
+# Pause (in case of error).
+if [[ ! $NONINTERACTIVE ]]
+then
+    read -n1 -r -p "Press any key to continue..."
+    echo
+fi
+
+# Create db binary.
+if [[ -f $SOURCE_DIR/qawHaq.db ]]
+then
+    if [[ ! $NONINTERACTIVE ]]
+    then
+        # If the db already exists, show a diff.
+        sqlite3 $SOURCE_DIR/qawHaq.db .dump > $TMP_DIR/old-mem.sql
+        ${SED} -i -e 's/INSERT INTO "mem"/INSERT INTO mem/g' $TMP_DIR/old-mem.sql
+        # This is necessary after sqlite3 v3.19.
+        # See: https://stackoverflow.com/questions/44989176/sqlite3-dump-inserts-replace-function-in-dump-change-from-3-18-to-3-19
+        ${SED} -i -e "s/replace(//g" $TMP_DIR/old-mem.sql
+        ${SED} -i -e "s/,'\\\\n',char(10))//g" $TMP_DIR/old-mem.sql
+        ${SED} -i -e "s/\\\\n/\n/g" $TMP_DIR/old-mem.sql
+        ${EDITOR:-vim} -d $TMP_DIR/old-mem.sql $TMP_DIR/mem.sql
+        read -n1 -r -p "Press any key to generate new db..."
+        echo
+    fi
+    mv $SOURCE_DIR/qawHaq.db $TMP_DIR/qawHaq.db~
+fi
+sqlite3 $SOURCE_DIR/qawHaq.db < $TMP_DIR/mem.sql
+
+# Sanity check.
+# TODO: Refactor the creation of old-mem.sql and sanity.sql into function.
+sqlite3 $SOURCE_DIR/qawHaq.db .dump > $TMP_DIR/sanity.sql
+${SED} -i -e 's/INSERT INTO "mem"/INSERT INTO mem/g' $TMP_DIR/sanity.sql
+${SED} -i -e "s/replace(//g" $TMP_DIR/sanity.sql
+${SED} -i -e "s/,'\\\\n',char(10))//g" $TMP_DIR/sanity.sql
+${SED} -i -e "s/\\\\n/\n/g" $TMP_DIR/sanity.sql
+IN_OUT_DIFF=$(diff $TMP_DIR/mem.sql $TMP_DIR/sanity.sql)
+if [[ ! -z "$IN_OUT_DIFF" ]]
+then
+    echo "Sanity check failed, entries possibly missing or out of order:"
+    echo "$IN_OUT_DIFF"
+    echo
+    echo "Temporary files: $TMP_DIR"
+    echo
+    exit 1
+fi
+
+# Pause (in case of error).
+if [[ ! $NONINTERACTIVE ]]
+then
+    read -n1 -r -p "Press any key to delete temporary files..."
+    echo
+fi
+
+# Clean up temporary files.
+rm -R $TMP_DIR

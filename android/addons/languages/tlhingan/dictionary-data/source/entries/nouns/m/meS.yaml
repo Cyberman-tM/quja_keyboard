@@ -1,0 +1,32 @@
+entry:
+  entry_name: meS
+  slug: meS_n
+  part_of_speech: n
+  pos: n
+  status: canonical
+  section: main
+  definition: knot
+  see_also: '{meS:v:1}'
+  hidden_notes: '"Mess" or "mesh", also German "Masche" (a stitch/loop of a knot).'
+  sources:
+    raw: '[1] {Saarbrücken qepHom''a'' 2014:src}'
+    citations:
+    - source: qephom_2014
+      date: '2014'
+  translations:
+    de:
+      definition: Knoten
+    fa:
+      definition: گره
+    sv:
+      definition: Knut
+    ru:
+      definition: морской узел
+    zh_HK:
+      definition: 結
+    pt:
+      definition: nó
+    fi:
+      definition: solmu
+    fr:
+      definition: noeud

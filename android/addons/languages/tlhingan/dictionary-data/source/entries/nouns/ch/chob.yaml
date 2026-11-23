@@ -1,0 +1,32 @@
+entry:
+  entry_name: chob
+  slug: chob_n
+  part_of_speech: n
+  pos: n
+  status: canonical
+  section: main
+  definition: corridor
+  see_also: '{''och:n}, {qa''rI'':n}, {DIn:n}, {lojmIt:n}, {vegh:v}'
+  hidden_notes: Reverse of {boch:v}. In the 1980 Stanley Kubrick film "The Shining",
+    the corridors of the Overlook Hotel play a central role.
+  sources:
+    raw: '[1] {BoP:src}'
+    citations:
+    - source: bop
+  translations:
+    de:
+      definition: Korridor
+    fa:
+      definition: راهرو
+    sv:
+      definition: korridor
+    ru:
+      definition: коридор
+    zh_HK:
+      definition: 走廊
+    pt:
+      definition: corredor
+    fi:
+      definition: käytävä
+    fr:
+      definition: couloir

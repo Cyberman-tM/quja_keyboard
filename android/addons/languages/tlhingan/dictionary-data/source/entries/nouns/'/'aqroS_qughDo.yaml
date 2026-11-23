@@ -1,0 +1,30 @@
+entry:
+  entry_name: '''aqroS qughDo'
+  slug: '''aqroS_qughDo_n'
+  part_of_speech: n
+  pos: n
+  status: canonical
+  section: main
+  definition: maximum cruising speed
+  components: '{''aqroS:n:2}, {qughDo:n}'
+  sources:
+    raw: '[1] {BoP:src}'
+    citations:
+    - source: bop
+  translations:
+    de:
+      definition: höchste Reisegeschwindigkeit
+    fa:
+      definition: حداکثر سرعت کروز
+    sv:
+      definition: maximal fartshastighet
+    ru:
+      definition: максимальная крейсерская скорость
+    zh_HK:
+      definition: 最大巡航速度
+    pt:
+      definition: velocidade máxima de cruzeiro
+    fi:
+      definition: suurin matkanopeus
+    fr:
+      definition: vitesse de croisière maximale

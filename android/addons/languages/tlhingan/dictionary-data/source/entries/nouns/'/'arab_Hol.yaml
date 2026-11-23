@@ -1,0 +1,32 @@
+entry:
+  entry_name: '''arab Hol'
+  slug: '''arab_Hol_n'
+  part_of_speech: n:terran
+  pos: n
+  metadata_tags:
+  - terran
+  status: canonical
+  section: extra
+  definition: Arabic language
+  see_also: '{Hol:n}'
+  sources:
+    raw: '[1] {Pittsburgh Art Tour:src}'
+    citations:
+    - source: pittsburgh_art_tour
+  translations:
+    de:
+      definition: arabische Sprache
+    fa:
+      definition: زبان عربی
+    sv:
+      definition: arabiskt språk
+    ru:
+      definition: арабский язык
+    zh_HK:
+      definition: 阿拉伯語
+    pt:
+      definition: linguagem árabe
+    fi:
+      definition: arabian kieli
+    fr:
+      definition: langue arabe

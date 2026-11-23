@@ -1,0 +1,2 @@
+A Latin-script Klingon quja' keyboard layout for AnySoftKeyboard. This development version includes the quja' letter arrangement. Dictionary suggestions and pIqaD support are planned for a later version.
+

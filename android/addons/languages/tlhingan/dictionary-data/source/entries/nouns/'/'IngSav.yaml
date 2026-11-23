@@ -1,0 +1,31 @@
+entry:
+  entry_name: '''IngSav'
+  slug: '''IngSav_n'
+  part_of_speech: n
+  pos: n
+  status: canonical
+  section: main
+  definition: melody
+  see_also: '{''ISQIm:n}, {jaghIv:n}, {QoQ:n}, {bom:n}'
+  sources:
+    raw: '[1] {qep''a'' 26 (2019):src}'
+    citations:
+    - source: qepa_2019
+      date: '2019'
+  translations:
+    de:
+      definition: Melodie
+    fa:
+      definition: ملودی
+    sv:
+      definition: melodi
+    ru:
+      definition: мелодия
+    zh_HK:
+      definition: 旋律
+    pt:
+      definition: melodia
+    fi:
+      definition: melodia
+    fr:
+      definition: mélodie

@@ -1,0 +1,33 @@
+entry:
+  entry_name: HIvje' bom
+  slug: HIvje'_bom_n
+  part_of_speech: n:deriv
+  pos: n
+  metadata_tags:
+  - deriv
+  status: canonical
+  section: main
+  definition: drinking song
+  see_also: '{bom:n}'
+  components: '{HIvje'':n}, {bom:n}'
+  sources:
+    raw: '[1] {KGT:src}'
+    citations:
+    - source: kgt
+  translations:
+    de:
+      definition: Trinklied
+    fa:
+      definition: نوشیدن آهنگ
+    sv:
+      definition: dryckesvisa
+    ru:
+      definition: застольная песня
+    zh_HK:
+      definition: 喝酒歌
+    pt:
+      definition: Canto de bebedeiras
+    fi:
+      definition: juomalaulu
+    fr:
+      definition: chanson à boire

@@ -1,0 +1,38 @@
+entry:
+  entry_name: ghoqchuy
+  slug: ghoqchuy_n
+  part_of_speech: n
+  pos: n
+  status: canonical
+  section: main
+  definition:
+    text: (data) stream, feed
+    parts:
+    - text: (data) stream
+    - text: feed
+  hidden_notes: Reverse of {yuch:n} "chocolate" {qogh:n:1} "belt". The I Love Lucy
+    episode "Job Switching" (1952) has a scene inside a candy factory in which a conveyor
+    belt delivers a stream of chocolate candies.
+  sources:
+    raw: '[1] {Saarbrücken qepHom''a'' 2024:src}'
+    citations:
+    - source: qephom_2024
+      date: '2024'
+  translations:
+    de:
+      definition: Datenstrom, Stream, Feed
+    fa:
+      definition: (داده) جریان، خوراک
+    sv:
+      definition: (data) stream, feed
+    ru:
+      definition: (данные) поток, подача
+    zh_HK:
+      definition: （資料）串流、提要
+    pt:
+      definition: (dados) fluxo, feed
+    fi:
+      definition: (data)virta, syöte
+      search_tags: datavirta, tietovirta, virta
+    fr:
+      definition: (données) flux, flux

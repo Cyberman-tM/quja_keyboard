@@ -1,0 +1,13 @@
+qawHaq.db
+qawHaq.json
+mem.sql
+mem.xml
+mem_processed.xml
+*.apkg
+*.aux
+*.log
+*.pdf
+*.toc
+__pycache__
+.idea
+.venv

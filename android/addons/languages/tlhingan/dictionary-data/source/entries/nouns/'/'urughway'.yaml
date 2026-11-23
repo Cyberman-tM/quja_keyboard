@@ -1,0 +1,32 @@
+entry:
+  entry_name: '''urughway'''
+  slug: '''urughway''_n'
+  part_of_speech: n:place,terran
+  pos: n
+  pos_subtype: place
+  metadata_tags:
+  - terran
+  status: canonical
+  section: extra
+  definition: Uruguay
+  sources:
+    raw: '[1] {Toki Pona - The Language of Good:src}'
+    citations:
+    - source: toki_pona_the_language_of_good
+  translations:
+    de:
+      definition: Uruguay
+    fa:
+      definition: اروگوئه
+    sv:
+      definition: Uruguay
+    ru:
+      definition: Уругвай
+    zh_HK:
+      definition: 烏拉圭
+    pt:
+      definition: Uruguai
+    fi:
+      definition: Uruguay
+    fr:
+      definition: Uruguay

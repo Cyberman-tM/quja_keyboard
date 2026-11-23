@@ -1,0 +1,34 @@
+entry:
+  entry_name: '''anDorya'''
+  slug: '''anDorya''_n'
+  part_of_speech: n:place,alt,fic
+  pos: n
+  pos_subtype: place
+  metadata_tags:
+  - alt
+  - fic
+  status: canonical
+  section: main
+  definition: '{''anDor:n}'
+  sources:
+    raw: '[1] {qep''a'' 24 (2017):src}'
+    citations:
+    - source: qepa_2017
+      date: '2017'
+  translations:
+    de:
+      definition: '{''anDor:n}'
+    fa:
+      definition: '{''anDor:n}'
+    sv:
+      definition: '{''anDor:n}'
+    ru:
+      definition: '{''anDor:n}'
+    zh_HK:
+      definition: '{''anDor:n}'
+    pt:
+      definition: '{''anDor:n}'
+    fi:
+      definition: '{''anDor:n}'
+    fr:
+      definition: '{''anDor:n}'

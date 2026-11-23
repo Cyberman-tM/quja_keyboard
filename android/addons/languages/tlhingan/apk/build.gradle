@@ -1,3 +1,4 @@
+ext.override_app_id = 'com.anysoftkeyboard.languagepack.tlhIngan.quja'
 ext.shouldBePublished = false
 ext.notPublishingReason = 'Initial local development pack'
 

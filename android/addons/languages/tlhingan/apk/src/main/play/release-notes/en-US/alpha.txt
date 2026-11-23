@@ -1,2 +1,4 @@
-Initial development skeleton.
+First public beta of the quja' Klingon keyboard for AnySoftKeyboard.
+
+Includes the four-row quja' layout, Klingon multi-letter keys and initial dictionary suggestions.
 

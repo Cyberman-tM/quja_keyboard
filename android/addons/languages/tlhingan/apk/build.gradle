@@ -1,6 +1,9 @@
 ext.override_app_id = 'com.anysoftkeyboard.languagepack.tlhIngan.quja'
-ext.shouldBePublished = false
-ext.notPublishingReason = 'Initial local development pack'
+ext.override_version_code = 1
+ext.override_version_name = '0.1.0-beta.1'
+ext.shouldBePublished = true
+ext.closedTestingTrackName = 'alpha'
+ext.openTestingTrackName = 'beta'
 
 apply from: "$rootDir/addons/gradle/pack_apk.gradle"
 

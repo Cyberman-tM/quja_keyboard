@@ -10,8 +10,8 @@ static Project findRootVersioningProject(Project proj) {
 
 android.defaultConfig {
     def versioningProject = findRootVersioningProject(project)
-    versionCode versioningProject.autoVersioning.versionData.versionCode
-    versionName versioningProject.autoVersioning.versionData.versionName
+    versionCode project.findProperty('override_version_code') ?: versioningProject.autoVersioning.versionData.versionCode
+    versionName project.findProperty('override_version_name') ?: versioningProject.autoVersioning.versionData.versionName
 
     println "Building ${project.path} ${versionName} (or ${project.version}), code ${versionCode}."
 }

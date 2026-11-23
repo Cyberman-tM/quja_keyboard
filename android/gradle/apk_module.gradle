@@ -64,7 +64,8 @@ android {
 
     namespace calculateApplicationId(project)
 
-    def keystoreFile = file("/tmp/anysoftkeyboard.keystore")
+    def configuredKeystorePath = System.getenv("KEY_STORE_FILE_PATH")
+    def keystoreFile = file(configuredKeystorePath ?: "/tmp/anysoftkeyboard.keystore")
 
     signingConfigs {
         release {

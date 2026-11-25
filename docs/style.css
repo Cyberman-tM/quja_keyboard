@@ -32,6 +32,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-
 nav { display: flex; align-items: center; gap: clamp(16px, 2.6vw, 38px); }
 nav a, .footer-links a { color: var(--muted); font-size: .84rem; text-decoration: none; }
 nav a:hover, .footer-links a:hover { color: var(--ink); text-decoration: underline; }
+.privacy-link { color: var(--accent-ink); }
 main { width: min(100% - 64px, 1320px); margin: auto; }
 .hero { position: relative; min-height: 590px; padding: 100px 0 112px; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(320px, .8fr); align-items: center; gap: clamp(40px, 8vw, 130px); }
 .eyebrow, .panel-label { margin: 0 0 17px; color: var(--accent); font: 500 .71rem/1.4 var(--mono); letter-spacing: .13em; text-transform: uppercase; }

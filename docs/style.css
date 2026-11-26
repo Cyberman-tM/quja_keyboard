@@ -87,7 +87,7 @@ main { width: min(100% - 64px, 1320px); margin: auto; }
 .prose em, .prose cite { color: var(--ink); }
 .prose code { padding: .08em .35em; background: var(--surface-raised); color: var(--accent-ink); font: .92em var(--mono); }
 .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; padding: 0; }
-.keyboard-section { display: grid; grid-template-columns: .72fr 1.28fr; gap: 8vw; align-items: start; }
+.keyboard-section { display: grid; grid-template-columns: .72fr 1.28fr; column-gap: 8vw; row-gap: 4vw; align-items: start; }
 .keyboard-preview-wrap { min-width: 0; }
 .keyboard-preview { margin: 0 0 30px; padding: 22px; background: linear-gradient(145deg, var(--surface-raised), var(--surface)); border: 1px solid #4a4e43; box-shadow: 14px 16px 0 #111310; transform: rotate(2.5deg); transform-origin: center top; }
 .keyboard-row { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; margin-top: 6px; }

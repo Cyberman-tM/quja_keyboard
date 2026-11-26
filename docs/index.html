@@ -27,6 +27,10 @@ permalink: /
   </header>
 
   <main id="main">
+    <figure class="feature-graphic" aria-hidden="true">
+      <img src="docs/assets/quja-feature-graphic-transparent.png" alt="" width="1024" height="500" decoding="async">
+    </figure>
+
     <aside class="release-notice" aria-labelledby="release-notice-title">
       <span class="notice-mark" aria-hidden="true">i</span>
       <div>
@@ -56,13 +60,8 @@ permalink: /
       <p class="editor-note"><strong>Draft note:</strong> Add the Play Store link and QR code here when the listing is live.</p>
     </section>
 
-    <figure class="feature-graphic" aria-hidden="true">
-      <img src="docs/assets/quja-feature-graphic.jpg" alt="" width="1024" height="500" decoding="async">
-    </figure>
-
     <section class="section keyboard-section" id="keyboard">
       <div class="section-heading">
-        <p class="eyebrow">The actual layout</p>
         <h2>Four rows.<br>One compact pattern.</h2>
       </div>
       <div class="keyboard-preview-wrap">
@@ -102,11 +101,12 @@ permalink: /
             <span class="key"><span class="key-latin">n</span><span class="key-piqad" aria-hidden="true">n</span></span>
             <span class="key"><span class="key-latin">ng</span><span class="key-piqad" aria-hidden="true">f</span></span>
           </div>
-          <figcaption id="keyboard-caption">The labels follow <code>quja.xml</code>. The pIqaD forms are decorative: the keyboard still enters the Latin text shown above.</figcaption>
+          <figcaption id="keyboard-caption">The pIqaD forms are decorative: the keyboard still enters the Latin text shown above.</figcaption>
         </figure>
         <div class="keyboard-copy prose">
-          <p>The preview mirrors the Android XML, including the wider delete key. The smaller pIqaD glyphs use the one-symbol-per-sound mapping used by the font, while the main labels show exactly what quja' enters.</p>
-          <p>That keeps the visual character of the older keyboard idea without pretending that the decorative lettering changes the text.</p>
+          <p>On a standard QWERTY keyboard, writing tlhIngan Hol can mean reaching for Shift to get the capital letters, or typing several letters to make one Klingon sound. On a phone, every key takes up precious space.</p>
+          <p>That's why I made quja'. The layout brings the letters used in Klingon together in a compact arrangement. The old page also described a word dictionary, so you could choose a suggestion instead of typing every word in full.</p>
+          <p>I sometimes forget what a prefix or suffix means, so the original version also had an optional list of them, using ASK's quick-text keys in place of the emoji shortcuts. These features need to be checked against the current package before they're presented as available.</p>
         </div>
       </div>
     </section>
@@ -115,18 +115,6 @@ permalink: /
       <p class="eyebrow">First time here?</p>
       <p><strong>AnySoftKeyboard (ASK)</strong> is an Android app that lets you choose keyboard layouts for typing on your phone or tablet. quja' is a layout add-on for ASK, much like choosing a different layout for a physical keyboard.</p>
       <a href="https://anysoftkeyboard.github.io/">Learn about AnySoftKeyboard</a>
-    </section>
-
-    <section class="section split-section" id="what">
-      <div class="section-heading">
-        <p class="eyebrow">The idea</p>
-        <h2>A little more room<br>for Klingon.</h2>
-      </div>
-      <div class="prose">
-        <p>On a standard QWERTY keyboard, writing tlhIngan Hol can mean reaching for Shift to get the capital letters, or typing several letters to make one Klingon sound. On a phone, every key takes up precious space.</p>
-        <p>That's why I made quja'. The layout brings the letters used in Klingon together in a compact arrangement. The old page also described a word dictionary, so you could choose a suggestion instead of typing every word in full.</p>
-        <p>I sometimes forget what a prefix or suffix means, so the original version also had an optional list of them, using ASK's quick-text keys in place of the emoji shortcuts. These features need to be checked against the current package before they're presented as available.</p>
-      </div>
     </section>
 
     <section class="section feature-grid" id="how">
@@ -168,28 +156,6 @@ permalink: /
       </div>
     </section>
 
-    <section class="section frequency-section" aria-labelledby="frequency-title">
-      <div class="frequency-intro">
-        <p class="eyebrow">A rough count</p>
-        <h2 id="frequency-title">Letters in the source texts</h2>
-        <p>Repeated words are counted each time. The original counts involved some manual cleanup, so treat them as an indication, not a definitive ranking.</p>
-      </div>
-      <div class="tables">
-        <div class="table-wrap">
-          <h3>Word list</h3>
-          <table><caption class="visually-hidden">Letter counts in the Klingon word list</caption><thead><tr><th scope="col">Rank</th><th scope="col">Letter</th><th scope="col">Count</th></tr></thead><tbody>
-            <tr><td>01</td><td>’</td><td>12,109</td></tr><tr><td>02</td><td>a</td><td>12,093</td></tr><tr><td>03</td><td>e</td><td>6,857</td></tr><tr><td>04</td><td>o</td><td>6,695</td></tr><tr><td>05</td><td>I</td><td>6,585</td></tr><tr><td>06</td><td>H</td><td>6,426</td></tr><tr><td>07</td><td>j</td><td>5,617</td></tr><tr><td>08</td><td>u</td><td>5,399</td></tr><tr><td>09</td><td>m</td><td>4,337</td></tr><tr><td>10</td><td>D</td><td>3,882</td></tr><tr><td>11</td><td>v</td><td>3,824</td></tr><tr><td>12</td><td>l</td><td>3,235</td></tr><tr><td>13</td><td>gh</td><td>3,231</td></tr><tr><td>14</td><td>q</td><td>3,224</td></tr><tr><td>15</td><td>S</td><td>2,958</td></tr><tr><td>16</td><td>b</td><td>2,935</td></tr><tr><td>17</td><td>t</td><td>2,618</td></tr><tr><td>18</td><td>ch</td><td>2,575</td></tr><tr><td>19</td><td>n</td><td>2,500</td></tr><tr><td>20</td><td>p</td><td>2,351</td></tr><tr><td>21</td><td>w</td><td>2,313</td></tr><tr><td>22</td><td>y</td><td>2,038</td></tr><tr><td>23</td><td>Q</td><td>1,780</td></tr><tr><td>24</td><td>r</td><td>1,498</td></tr><tr><td>25</td><td>tlh</td><td>1,414</td></tr><tr><td>26</td><td>ng</td><td>867</td></tr>
-          </tbody></table>
-        </div>
-        <div class="table-wrap">
-          <h3>Hamlet</h3>
-          <table><caption class="visually-hidden">Letter counts in the Klingon translation of Hamlet</caption><thead><tr><th scope="col">Rank</th><th scope="col">Letter</th><th scope="col">Count</th></tr></thead><tbody>
-            <tr><td>01</td><td>a</td><td>996</td></tr><tr><td>02</td><td>’</td><td>862</td></tr><tr><td>03</td><td>o</td><td>793</td></tr><tr><td>04</td><td>I</td><td>636</td></tr><tr><td>05</td><td>e</td><td>608</td></tr><tr><td>06</td><td>u</td><td>574</td></tr><tr><td>07</td><td>H</td><td>464</td></tr><tr><td>08</td><td>n</td><td>403</td></tr><tr><td>09</td><td>gh</td><td>393</td></tr><tr><td>10</td><td>m</td><td>386</td></tr><tr><td>11</td><td>q</td><td>370</td></tr><tr><td>12</td><td>l</td><td>350</td></tr><tr><td>13</td><td>D</td><td>339</td></tr><tr><td>14</td><td>r</td><td>338</td></tr><tr><td>15</td><td>S</td><td>330</td></tr><tr><td>16</td><td>p</td><td>326</td></tr><tr><td>17</td><td>j</td><td>318</td></tr><tr><td>18</td><td>b</td><td>312</td></tr><tr><td>19</td><td>t</td><td>310</td></tr><tr><td>20</td><td>ch</td><td>300</td></tr><tr><td>21</td><td>v</td><td>287</td></tr><tr><td>22</td><td>y</td><td>269</td></tr><tr><td>23</td><td>Q</td><td>260</td></tr><tr><td>24</td><td>w</td><td>241</td></tr><tr><td>25</td><td>ng</td><td>184</td></tr><tr><td>26</td><td>tlh</td><td>171</td></tr>
-          </tbody></table>
-        </div>
-      </div>
-    </section>
-
     <section class="section split-section order-section" id="order">
       <div class="section-heading">
         <p class="eyebrow">The arrangement</p>
@@ -199,7 +165,7 @@ permalink: /
         <h3>Order?</h3>
         <p>Once I had the numbers, I had to decide where to put each letter. Simply putting the most-used letters at the top seemed rather silly. I first tried putting the most-used keys in the middle, where they might be easier to reach with one hand. After a while, though, I realised that the layout needed more structure.</p>
         <h3>The shape of quja'</h3>
-        <p>The letters <strong>tlh</strong> are among the least frequent in the count, but they have a prominent place: the word <em>tlhIngan</em> begins with them. The <strong>t</strong> key sits nearby. The other multi-letter sounds — <strong>ch</strong>, <strong>gh</strong> and <strong>ng</strong> — add a natural symmetry. And <strong>q</strong> and <strong>Q</strong> stay close together.</p>
+        <p>The letter <strong>tlh</strong> is among the least frequent in the count, but it has a prominent place: the word <em>tlhIngan</em> begins with it. The <strong>t</strong> key sits nearby. The other multi-letter sounds — <strong>ch</strong>, <strong>gh</strong> and <strong>ng</strong> — add a natural symmetry. And <strong>q</strong> and <strong>Q</strong> stay close together.</p>
         <p>I also wanted the top line to read <em>quja'</em>. It may be a nonsense word, but it runs off the tongue as if it could be real.</p>
       </div>
     </section>

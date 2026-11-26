@@ -16,29 +16,28 @@ permalink: /
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="quja', home"><img class="brand-logo" src="docs/assets/quja-logo.svg" alt="" aria-hidden="true"><span>quja'<small>tlhIngan Hol keyboard</small></span></a>
+    <a class="brand" href="#top" aria-label="quja', home"><img class="brand-logo" src="docs/assets/quja-logo.svg" alt="" aria-hidden="true"><span>quja'<small>tlhIngan Hol keyboard (currently only on Android, iOS may follow)</small></span></a>
     <nav aria-label="Main navigation">
       <a href="#download">Get quja'</a>
       <a href="#how">How it works</a>
-      <a href="#why">The layout</a>
+      <a href="#keyboard">The layout</a>
       <a href="#issues">Issues</a>
       <a class="privacy-link" href="/privacy.html">Privacy</a>
     </nav>
   </header>
 
   <main id="main">
-    <figure class="feature-graphic" aria-hidden="true">
-      <img src="docs/assets/quja-feature-graphic-transparent.png" alt="" width="1024" height="500" decoding="async">
-    </figure>
-
     <aside class="release-notice" aria-labelledby="release-notice-title">
       <span class="notice-mark" aria-hidden="true">i</span>
       <div>
-        <p class="eyebrow">Release update</p>
         <h2 id="release-notice-title">The last public version is no longer available.</h2>
         <p>The last public release of quja' is around ten years old and is no longer available to download. A new version is in development and is expected soon. We'll post updates here.</p>
       </div>
     </aside>
+
+    <figure class="feature-graphic" aria-hidden="true">
+      <img src="docs/assets/quja-feature-graphic-transparent-cropped.png" alt="" width="1555" height="678" decoding="async">
+    </figure>
 
     <section class="section download-section download-section-top" id="download">
       <div class="section-heading">
@@ -103,11 +102,19 @@ permalink: /
           </div>
           <figcaption id="keyboard-caption">The pIqaD forms are decorative: the keyboard still enters the Latin text shown above.</figcaption>
         </figure>
-        <div class="keyboard-copy prose">
+      </div>
+      <div class="keyboard-copy prose" id="why">
           <p>On a standard QWERTY keyboard, writing tlhIngan Hol can mean reaching for Shift to get the capital letters, or typing several letters to make one Klingon sound. On a phone, every key takes up precious space.</p>
           <p>That's why I made quja'. The layout brings the letters used in Klingon together in a compact arrangement. The old page also described a word dictionary, so you could choose a suggestion instead of typing every word in full.</p>
-          <p>I sometimes forget what a prefix or suffix means, so the original version also had an optional list of them, using ASK's quick-text keys in place of the emoji shortcuts. These features need to be checked against the current package before they're presented as available.</p>
-        </div>
+          <p>A keyboard layout decides which text is entered. A font decides how that text looks on screen. They work together, but they are not the same thing.</p>
+          <p>In quja's Latin layout, keys enter ordinary Latin letters and letter sequences. For example, <code>ch</code>, <code>gh</code>, <code>ng</code> and <code>tlh</code> are typed as text; the keyboard does not turn them into pIqaD characters. A special font may change the appearance of letters in an app that uses that font, but it does not translate the text.</p>
+          <p>Unicode is the standard that lets devices and apps store and exchange text consistently. Installing a keyboard layout does not automatically install a font for every app on your phone. What you see depends on the characters entered, the fonts available to the app, and how that app displays them.</p>
+          <p>Why not keep the keys as close to QWERTY as possible? Fair question. Counter-question: where would be the fun in that? jIqIDneH…</p>
+          <p>More seriously, I wanted a layout that felt natural on a handheld device with limited space. QWERTY was designed for English and for a mechanical device. tlhIngan Hol has its own sounds and rhythm, so I wanted to start from the language instead.</p>
+          <p>The first step was finding out which letters appeared most often. I counted letters in two sources: a word list from Klingonska Akademien and the restored Klingon translation of <cite>Hamlet</cite>. The figures were a rough guide for the design, not a scientific study.</p>
+          <p>Once I had the numbers, I had to decide where to put each letter. Simply putting the most-used letters at the top seemed rather silly. I first tried putting the most-used keys in the middle, where they might be easier to reach with one hand. After a while, though, I realised that the layout needed more structure.</p>
+          <p>The letter <strong>tlh</strong> is among the least frequent in the count, but it has a prominent place: the word <em>tlhIngan</em> begins with it. The <strong>t</strong> key sits nearby. The other multi-letter sounds — <strong>ch</strong>, <strong>gh</strong> and <strong>ng</strong> — add a natural symmetry. And <strong>q</strong> and <strong>Q</strong> stay close together.</p>
+          <p>I also wanted the top line to read <em>quja'</em>. It may be a nonsense word, but it runs off the tongue as if it could be real.</p>
       </div>
     </section>
 
@@ -130,54 +137,6 @@ permalink: /
         <h2>How to type</h2>
         <p>That's up to you. I found it comfortable to type one-handed: the keys form a pattern of three columns, one column, then three columns. Keeping your hand near the top row makes the keys easy to reach.</p>
       </article>
-    </section>
-
-    <section class="section text-section" id="text">
-      <div class="section-heading">
-        <p class="eyebrow">A note for phones</p>
-        <h2>Keyboard, font<br>and Unicode.</h2>
-      </div>
-      <div class="prose">
-        <p>A keyboard layout decides which text is entered. A font decides how that text looks on screen. They work together, but they are not the same thing.</p>
-        <p>In quja's Latin layout, keys enter ordinary Latin letters and letter sequences. For example, <code>ch</code>, <code>gh</code>, <code>ng</code> and <code>tlh</code> are typed as text; the keyboard does not turn them into pIqaD characters. A special font may change the appearance of letters in an app that uses that font, but it does not translate the text.</p>
-        <p>Unicode is the standard that lets devices and apps store and exchange text consistently. Installing a keyboard layout does not automatically install a font for every app on your phone. What you see depends on the characters entered, the fonts available to the app, and how that app displays them.</p>
-      </div>
-    </section>
-
-    <section class="section why-section" id="why">
-      <div class="section-heading">
-        <p class="eyebrow">Why this arrangement?</p>
-        <h2>Start from<br>the language.</h2>
-      </div>
-      <div class="prose">
-        <p>Why not keep the keys as close to QWERTY as possible? Fair question. Counter-question: where would be the fun in that? jIqIDneH…</p>
-        <p>More seriously, I wanted a layout that felt natural on a handheld device with limited space. QWERTY was designed for English and for a mechanical device. tlhIngan Hol has its own sounds and rhythm, so I wanted to start from the language instead.</p>
-        <p>The first step was finding out which letters appeared most often. I counted letters in two sources: a word list from Klingonska Akademien and the restored Klingon translation of <cite>Hamlet</cite>. The figures were a rough guide for the design, not a scientific study.</p>
-      </div>
-    </section>
-
-    <section class="section split-section order-section" id="order">
-      <div class="section-heading">
-        <p class="eyebrow">The arrangement</p>
-        <h2>Give the sounds<br>a place.</h2>
-      </div>
-      <div class="prose">
-        <h3>Order?</h3>
-        <p>Once I had the numbers, I had to decide where to put each letter. Simply putting the most-used letters at the top seemed rather silly. I first tried putting the most-used keys in the middle, where they might be easier to reach with one hand. After a while, though, I realised that the layout needed more structure.</p>
-        <h3>The shape of quja'</h3>
-        <p>The letter <strong>tlh</strong> is among the least frequent in the count, but it has a prominent place: the word <em>tlhIngan</em> begins with it. The <strong>t</strong> key sits nearby. The other multi-letter sounds — <strong>ch</strong>, <strong>gh</strong> and <strong>ng</strong> — add a natural symmetry. And <strong>q</strong> and <strong>Q</strong> stay close together.</p>
-        <p>I also wanted the top line to read <em>quja'</em>. It may be a nonsense word, but it runs off the tongue as if it could be real.</p>
-      </div>
-    </section>
-
-    <section class="section future-section" id="future">
-      <div class="future-mark" aria-hidden="true">’</div>
-      <div>
-        <p class="eyebrow">What comes next</p>
-        <h2>Still taking shape.</h2>
-        <p>The older page also described a Windows version and future layout ideas. Those details are out of date, so they need checking before they return here. This draft focuses on the Android layout and the story behind its design.</p>
-        <a class="text-link" href="https://github.com/Cyberman-tM/quja_keyboard/issues">See what’s planned or suggest an idea</a>
-      </div>
     </section>
 
     <section class="section community-section" id="issues">

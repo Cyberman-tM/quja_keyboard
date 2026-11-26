@@ -86,7 +86,7 @@ main { width: min(100% - 64px, 1320px); margin: auto; }
 .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; padding: 0; }
 .keyboard-section { display: grid; grid-template-columns: .72fr 1.28fr; gap: 8vw; align-items: start; }
 .keyboard-preview-wrap { min-width: 0; }
-.keyboard-preview { margin: 0; padding: 22px; background: linear-gradient(145deg, var(--surface-raised), var(--surface)); border: 1px solid #4a4e43; box-shadow: 14px 16px 0 #111310; }
+.keyboard-preview { margin: 0; padding: 22px; background: linear-gradient(145deg, var(--surface-raised), var(--surface)); border: 1px solid #4a4e43; box-shadow: 14px 16px 0 #111310; transform: rotate(-1.1deg); transform-origin: center top; }
 .keyboard-row { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; margin-top: 6px; }
 .keyboard-row-top { grid-template-columns: repeat(5, minmax(0, 1fr)) minmax(0, 2fr); margin-top: 0; }
 .key { min-height: 70px; display: grid; place-items: center; align-content: center; gap: 2px; background: #34382f; border: 1px solid #51564a; color: var(--ink); }
@@ -192,7 +192,7 @@ footer { width: min(100% - 64px, 1320px); margin: auto; padding: 25px 0; display
 .policy .updated { margin: 0 0 34px; color: var(--accent); font: 500 .8rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .policy hr { margin: 55px 0; border: 0; border-top: 1px solid var(--line); }
 @media (max-width: 640px) {
-  .keyboard-preview { padding: 12px; }
+  .keyboard-preview { padding: 12px; transform: none; }
   .keyboard-preview .key-piqad { display: none; }
   .keyboard-preview .key { min-height: 58px; }
   footer { width: min(100% - 40px, 1320px); padding: 20px 0; gap: 15px; }

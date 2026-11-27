@@ -15,12 +15,13 @@ permalink: /
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
+  <header id="top" class="site-header">
     <a class="brand" href="#top" aria-label="quja', home"><img class="brand-logo" src="docs/assets/quja-logo.svg" alt="" aria-hidden="true"><span>quja'<small>tlhIngan Hol keyboard (currently only on Android, iOS may follow)</small></span></a>
     <nav aria-label="Main navigation">
       <a href="#download">Get quja'</a>
-      <a href="#how">How it works</a>
+      <a href="#install">Installation</a>
       <a href="#keyboard">The layout</a>
+      <a href="#how">How it works</a>
       <a href="#issues">Issues</a>
       <a class="privacy-link" href="/privacy.html">Privacy</a>
     </nav>
@@ -116,16 +117,43 @@ permalink: /
     <section class="section feature-grid" id="how">
       <article class="feature-card">
         <h2>What it does</h2>
-        <p>It makes typing Klingon in the Latin alphabet easier. Capital letters and multi-letter sounds have dedicated keys, and the usual keyboard is still close by when you need it.</p>
+        <p>It makes typing Klingon easier. Capital letters and multi-letter sounds have dedicated keys, and the usual keyboard is still close by when you need it.</p>
       </article>
       <article class="feature-card">
         <h2>What it doesn't</h2>
-        <p>quja' does not translate text. The pIqaD-inspired key images in the older package are decorative: tapping them still enters Latin-script text.</p>
+        <p>quja' does not translate text. The output will be the keys you press: Latin letters in the Latin layout, or the Unicode encoding for pIqaD in the Unicode layout.</p>
       </article>
       <article class="feature-card">
         <h2>How to type</h2>
         <p>That's up to you. I found it comfortable to type one-handed: the keys form a pattern of three columns, one column, then three columns. Keeping your hand near the top row makes the keys easy to reach.</p>
       </article>
+    </section>
+
+    <section class="section install-section" id="install">
+      <div class="section-heading">
+        <h2>Install<br>quja'.</h2>
+      </div>
+      <div class="install-content">
+        <article class="install-card">
+          <h3>AnySoftKeyboard first</h3>
+          <p>quja' is an add-on for <a href="https://anysoftkeyboard.github.io/">AnySoftKeyboard (ASK)</a>, not a standalone keyboard. Install ASK first, then install the quja' add-on as well.</p>
+          <ol>
+            <li>Install and enable AnySoftKeyboard.</li>
+            <li>Install quja'.</li>
+            <li>In ASK's settings, open the language or keyboard-layout section, enable the Klingon quja' layout, and select it when typing.</li>
+          </ol>
+        </article>
+        <article class="install-card">
+          <h3>Unicode pIqaD</h3>
+          <p>The Unicode layout uses the established CSUR mapping for Klingon pIqaD. To see the glyphs, your device or app needs a compatible font.</p>
+          <p>For an overview of available fonts and platform-specific advice, see the <a href="https://klingon.wiki/En/Fonts">Klingon Wiki font guide</a>. Font sources include <a href="https://github.com/dadap/pIqaD-fonts">pIqaD qolqoS</a>, the <a href="https://www.evertype.com/fonts/tlh/">Evertype Klingon pIqaD fonts</a>, and the <a href="https://github.com/kitty-panics/klingon-fonts">Klingon fonts collection</a>.</p>
+          <ol>
+            <li>Download a font that supports the CSUR pIqaD range.</li>
+            <li>Install it using your device's font manager or the method recommended for your platform. On a computer, opening a TTF or OTF file usually offers an install option.</li>
+            <li>Select the Unicode pIqaD layout in ASK and test it in an app that can use the installed font.</li>
+          </ol>
+        </article>
+      </div>
     </section>
 
     <section class="section community-section" id="issues">
